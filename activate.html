@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activate Subscription - Coding Squad</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Removal of default inheritance */
+        a {
+            text-decoration: none;
+            color: black;
+        }
+
+        a:hover {
+            color: white;
+            transition: ease-in .2s;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #a3d1ff;
+            /* Header color */
+        }
+
+        header img {
+            max-width: 50px;
+            margin-right: 10px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4da6ff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3385ff;
+        }
+
+        #preloader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 999;
+            text-align: center;
+        }
+
+        #preloader img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            height: 4px;
+            width: 30px;
+            background-color: #333;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        .menu {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            transform: translateX(100%);
+            /* Hide off-screen */
+        }
+
+        .menu.open {
+            transform: translateX(0);
+            /* Slide in */
+        }
+
+        .menu-item {
+            padding: 15px;
+            border-bottom: 1px solid #ccc;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #69a6cf;
+            /* Hover effect */
+        }
+
+        .close-menu {
+            cursor: pointer;
+            font-size: 20px;
+            color: #333;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+                /* Show on smaller screens */
+            }
+
+            .menu {
+                display: block;
+                /* Ensure it shows on smaller screens */
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: flex;
+                /* Hide hamburger on larger screens */
+            }
+
+            .menu {
+                display: block;
+                /* Hide the mobile menu on larger screens */
+            }
+        }
+
+
+        #detailsContainer {
+            display: none;
+        }
+
+        #receiptImage {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #a3d1ff;
+            /* Footer color */
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="preloader">
+        <img src="files/load.gif" alt="Loading...">
+    </div>
+    <header>
+        <div style="display: flex; align-items: center;">
+            <img src="files/image.png" alt="Coding Squad Logo">
+            <h1>Coding Squad</h1>
+        </div>
+        <div class="hamburger" id="hamburger">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+    </header>
+    <div class="menu" id="menu">
+        <span class="close-menu" id="closeMenu">&times;</span>
+        <div class="menu-item"><a href="dashboard.html">Home</a></div>
+        <div class="menu-item"><a href="profile.html">My Account</a></div>
+        <div class="menu-item"><a href="activate.html">Activate Plans</a></div>
+        <div class="menu-item"><a href="Coming-Soon.html">Pay4Friend</a></div>
+        <div class="menu-item"><a href="Coming-Soon.html">Transfers</a></div>
+        <div class="menu-item"><a href="Referrals.html">Referral Network</a></div>
+    </div>
+    <br><br><br><br>
+    <div class="container">
+        <h2>Activate Subscription</h2>
+
+        <div class="form-group">
+            <label for="activationKey" id="activationText">Enter Activation Key</label>
+            <input type="text" id="activationKey" placeholder="Enter activation key" required>
+        </div>
+
+        <button id="getDetails">Get Details</button>
+
+        <div id="detailsContainer">
+            <div class="form-group">
+                <label for="email">User Email</label>
+                <input type="email" id="email" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="duration">Subscription Duration</label>
+                <input type="text" id="duration" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="paymentDate">Payment Date and Time</label>
+                <input type="datetime-local" id="paymentDate" readonly>
+            </div>
+
+            <div class="form-group">
+                <label>Receipt</label>
+                <img id="receiptImage" alt="Receipt Image">
+            </div>
+
+            <button id="activateKey">Activate</button>
+        </div>
+    </div>
+    <br><br><br><br>
+    <footer>
+        &copy; <span id="currentYear"></span> Coding Squad. All rights reserved.
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+    <script src="firebaseConfig.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-core.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-script.js"></script>
+    <script src="assets/theme/js/script.js"></script>
+    <input name="cookieData" type="hidden" data-cookie-cookiesAlertType='1' data-cookie-customDialogSelector='null'
+        data-cookie-colorText='#424a4d' data-cookie-colorBg='rgb(255, 255, 255)' data-cookie-opacityOverlay='0'
+        data-cookie-bgOpacity='100' data-cookie-textButton='GOT IT' data-cookie-rejectText='REJECT'
+        data-cookie-colorButton='#80ace8' data-cookie-rejectColor='#ffffff' data-cookie-colorLink='#424a4d'
+        data-cookie-underlineLink='true'
+        data-cookie-text="We collect information like your device name, IP and cross browsing activities to provide support, research and analytics ">
+    <input name="animation" type="hidden">
+
+    <script>
+        const preloader = document.getElementById('preloader');
+        const getDetailsButton = document.getElementById('getDetails');
+        const activateKeyButton = document.getElementById('activateKey');
+        const detailsContainer = document.getElementById('detailsContainer');
+        const activationKeyInput = document.getElementById('activationKey');
+        const activationText = document.getElementById('activationText');
+        const currentYear = document.getElementById('currentYear');
+
+        currentYear.textContent = new Date().getFullYear();
+        // Firebase auth check
+        firebase.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                // Redirect to login if not logged in
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Function to fetch and display details from Firestore
+        getDetailsButton.addEventListener('click', () => {
+            const activationKey = activationKeyInput.value;
+
+            if (activationKey) {
+                preloader.style.display = 'block';
+
+                // Fetch the key details from Firestore
+                const db = firebase.firestore();
+                db.collection('Keys').doc(activationKey).get().then(doc => {
+                    if (doc.exists) {
+                        const keyData = doc.data();
+
+                        // Check if the key is already validated
+                        if (keyData.validated) {
+                            alert('This activation key has already been used.');
+                            preloader.style.display = 'none';
+                            return;
+                        }
+
+                        // Populate the fields with the data
+                        document.getElementById('email').value = keyData.email;
+                        document.getElementById('duration').value = keyData.duration;
+                        document.getElementById('paymentDate').value = keyData.paymentDate;
+
+                        // Display receipt image
+                        const receiptImage = document.getElementById('receiptImage');
+                        receiptImage.src = keyData.receiptURL;
+
+                        // Hide activation key input and button
+                        activationKeyInput.style.display = 'none';
+                        getDetailsButton.style.display = 'none';
+                        activationText.style.display = 'none';
+
+                        // Show the details container
+                        detailsContainer.style.display = 'block';
+                    } else {
+                        alert('Invalid Activation Key');
+                    }
+                    preloader.style.display = 'none';
+                }).catch(error => {
+                    console.error('Error fetching key:', error);
+                    preloader.style.display = 'none';
+                });
+            }
+        });
+
+        // Function to activate the key and update user plan
+        activateKeyButton.addEventListener('click', () => {
+            const user = firebase.auth().currentUser;
+            const activationKey = activationKeyInput.value;
+            const duration = document.getElementById('duration').value;
+            const paymentDate = document.getElementById('paymentDate').value;
+
+            if (user && activationKey && duration && paymentDate) {
+                preloader.style.display = 'block';
+
+                const db = firebase.firestore();
+                const userId = user.uid;
+
+                // Convert paymentDate to a Date object
+                const startDate = new Date(paymentDate);
+
+                if (isNaN(startDate)) {
+                    alert('Invalid payment date.');
+                    preloader.style.display = 'none';
+                    return;
+                }
+
+                let endDate;
+
+                switch (duration) {
+                    case '2-months':
+                        endDate = new Date(startDate.setMonth(startDate.getMonth() + 2));
+                        break;
+                    case '4-months':
+                        endDate = new Date(startDate.setMonth(startDate.getMonth() + 4));
+                        break;
+                    case '6-months':
+                        endDate = new Date(startDate.setMonth(startDate.getMonth() + 6));
+                        break;
+                    case '1 year':
+                        endDate = new Date(startDate.setFullYear(startDate.getFullYear() + 1));
+                        break;
+                    default:
+                        alert('Invalid subscription duration.');
+                        preloader.style.display = 'none';
+                        return;
+                }
+
+                // Ensure endDate is valid before proceeding
+                if (!endDate || isNaN(endDate)) {
+                    alert('Failed to calculate the plan end date.');
+                    preloader.style.display = 'none';
+                    return;
+                }
+
+                // Determine the plan type
+                let planType;
+                //if (duration === '0 months') planType = 'None';
+                if (duration === '2-months') planType = 'Bi-monthly Plan';
+                if (duration === '4-months') planType = 'Quarterly Plan';
+                if (duration === '6-months') planType = 'Half Year Plan';
+                if (duration === '1 year') planType = 'Full Year Plan';
+
+                // Update the user's plan information and validate the key
+                db.collection('users').doc(userId).update({
+                    activePlans: planType,
+                    planStart: paymentDate,
+                    planEnd: endDate.toISOString()
+                }).then(() => {
+                    // Set the key as validated
+                    db.collection('Keys').doc(activationKey).update({
+                        validated: true
+                    }).then(() => {
+                        alert('Subscription Activated Successfully!');
+                        window.location.href = 'index.html';
+                    }).catch(error => {
+                        console.error('Error validating key:', error);
+                        preloader.style.display = 'none';
+                    });
+                }).catch(error => {
+                    console.error('Error updating user plan:', error);
+                    preloader.style.display = 'none';
+                });
+            }
+        });
+
+        // Hamburger Menu
+        const hamburger = document.getElementById("hamburger");
+        const menu = document.getElementById("menu");
+        const closeMenu = document.getElementById("closeMenu");
+
+        hamburger.addEventListener("click", () => {
+            menu.classList.toggle("open");
+        });
+
+        closeMenu.addEventListener("click", () => {
+            menu.classList.remove("open");
+        });
+    </script>
+</body>
+
+</html>

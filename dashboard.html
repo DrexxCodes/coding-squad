@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding Squad - Home</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+ 
+       <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* Removal of default inheritance */
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        a:hover {
+            color: white;
+            transition: ease-in .2s;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #a3d1ff;
+            /* Header color */
+        }
+
+        header img {
+            max-width: 50px;
+            margin-right: 10px;
+        }
+        /* Removal of default inheritance */
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        a:hover {
+            color: white;
+            transition: ease-in .2s;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #a3d1ff;
+            /* Header color */
+        }
+
+        header img {
+            max-width: 50px;
+            margin-right: 10px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            overflow-x: hidden;
+        }
+
+        .greeting {
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .wallet-info {
+            display: flex;
+            justify-content: space-between;
+            background-color: #e6f2ff; /* Complementary background */
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .no-active-plans {
+            font-size: 20px;
+            color: #ff4d4d;
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #e6f2ff; /* Light blue */
+        }
+
+        tr:nth-child(odd) {
+            background-color: #f9f9f9; /* Light gray */
+        }
+
+        #preloader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 999;
+            text-align: center;
+        }
+
+        #preloader img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            height: 4px;
+            width: 30px;
+            background-color: #333;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        .menu {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            transform: translateX(100%);
+            /* Hide off-screen */
+        }
+
+        .menu.open {
+            transform: translateX(0);
+            /* Slide in */
+        }
+
+        .menu-item {
+            padding: 15px;
+            border-bottom: 1px solid #ccc;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #69a6cf;
+            color: white;
+            /* Hover effect */
+        }
+
+        .close-menu {
+            cursor: pointer;
+            font-size: 20px;
+            color: #333;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+                /* Show on smaller screens */
+            }
+
+            .menu {
+                display: block;
+                /* Ensure it shows on smaller screens */
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: flex;
+                /* Hide hamburger on larger screens */
+            }
+
+            .menu {
+                display: block;
+                /* Hide the mobile menu on larger screens */
+            }
+        }
+
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .hamburger {
+                display: block; /* Show hamburger icon on mobile */
+            }
+            .hamburger-menu {
+                width: 80%;
+            }
+        }
+
+        footer {
+            background-color: #a3d1ff;
+            /* Footer color */
+            padding: 10px;
+            text-align: center;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/66a51f59becc2fed692bf328/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+
+<header>
+    <div style="display: flex; align-items: center;">
+        <img src="files/image.png" alt="Coding Squad Logo">
+        <h1>Coding Squad</h1>
+    </div>
+    <div class="hamburger" id="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </div>
+</header>
+<div class="menu" id="menu">
+    <span class="close-menu" id="closeMenu">&times;</span>
+    <div class="menu-item"><a href="profile.html">My Account</a></div>
+    <div class="menu-item"><a href="activate.html">Activate Plans</a></div>
+    <div class="menu-item"><a href="Coming-Soon.html">Pay4Friend</a></div>
+    <div class="menu-item"><a href="Coming-Soon.html">Transfers</a></div>
+    <div class="menu-item"><a href="Referrals.html">Referral Network</a></div>
+</div>
+
+
+    <div id="preloader"><img src="files/load.gif" alt="Loading..."></div>
+
+
+
+    <div class="greeting" id="greeting"></div>
+
+    <div class="wallet-info">
+        <div>Balance: <span id="balance">0</span></div>
+        <div>Active Plan: <span id="activePlan">None</span></div>
+    </div>
+
+    <div class="no-active-plans" id="noPlansMessage" style="display: none;">You have no active plans</div>
+
+    <table id="transactionTable">
+        <thead>
+            <tr>
+                <th>Transaction Type</th>
+                <th>Name</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody id="transactionBody">
+            <!-- Transactions will be populated here -->
+        </tbody>
+    </table>
+
+    <footer>
+        &copy; <span id="currentYear"></span> Coding Squad. All rights reserved.
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebaseConfig.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-core.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-script.js"></script>
+    <script src="assets/theme/js/script.js"></script>
+    <input name="cookieData" type="hidden" data-cookie-cookiesAlertType='1' data-cookie-customDialogSelector='null'
+        data-cookie-colorText='#424a4d' data-cookie-colorBg='rgb(255, 255, 255)' data-cookie-opacityOverlay='0'
+        data-cookie-bgOpacity='100' data-cookie-textButton='GOT IT' data-cookie-rejectText='REJECT'
+        data-cookie-colorButton='#80ace8' data-cookie-rejectColor='#ffffff' data-cookie-colorLink='#424a4d'
+        data-cookie-underlineLink='true'
+        data-cookie-text="We collect information like your device name, IP and cross browsing activities to provide support, research and analytics ">
+    <input name="animation" type="hidden">    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-core.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-script.js"></script>
+    <script src="assets/theme/js/script.js"></script>
+    <input name="cookieData" type="hidden" data-cookie-cookiesAlertType='1' data-cookie-customDialogSelector='null'
+        data-cookie-colorText='#424a4d' data-cookie-colorBg='rgb(255, 255, 255)' data-cookie-opacityOverlay='0'
+        data-cookie-bgOpacity='100' data-cookie-textButton='GOT IT' data-cookie-rejectText='REJECT'
+        data-cookie-colorButton='#80ace8' data-cookie-rejectColor='#ffffff' data-cookie-colorLink='#424a4d'
+        data-cookie-underlineLink='true'
+        data-cookie-text="We collect information like your device name, IP and cross browsing activities to provide support, research and analytics ">
+    <input name="animation" type="hidden">
+    <script>
+        const preloader = document.getElementById('preloader');
+        const greetingDiv = document.getElementById('greeting');
+        const balanceSpan = document.getElementById('balance');
+        const activePlanSpan = document.getElementById('activePlan');
+        const noPlansMessage = document.getElementById('noPlansMessage');
+        const transactionBody = document.getElementById('transactionBody');
+        const currentYear = document.getElementById('currentYear');
+
+        currentYear.textContent = new Date().getFullYear();
+
+// Check authentication state
+firebase.auth().onAuthStateChanged((user) => {
+    if (user) {
+        preloader.style.display = 'block'; // Show preloader
+        const userId = user.uid;
+        const userDocRef = firebase.firestore().collection('users').doc(userId);
+
+        // Fetch user data
+        userDocRef.get().then((doc) => {
+            if (doc.exists) {
+                const data = doc.data();
+                const username = data.username || 'User';
+                const walletBalance = data.wallet || 0;
+                let activePlans = data.activePlans || 'None';
+                const planStart = data.planStart || null;
+                const planEnd = data.planEnd || null;
+
+                // Greeting message
+                greetingDiv.textContent = `Good ${getTimeOfDay()} ${username}!`;
+
+                // Update wallet balance
+                balanceSpan.textContent = walletBalance;
+
+                // Check if plan end date has passed
+                if (planEnd && new Date(planEnd) < new Date()) {
+                    // If the current date is past the planEnd date, reset active plan
+                    activePlans = 'None';
+
+                    // Update Firestore to reset plan status
+                    userDocRef.update({
+                        activePlans: 'None',
+                        planStart: null,
+                        planEnd: null
+                    }).then(() => {
+                        console.log('Plan reset to none.');
+                    }).catch((error) => {
+                        console.error('Error resetting plan:', error);
+                    });
+                }
+
+                // Update the active plans display
+                activePlanSpan.textContent = activePlans;
+
+                // Show or hide no plans message based on the active plan status
+                if (activePlans === 'None') {
+                    noPlansMessage.style.display = 'block'; // Show no plans message
+                } else {
+                    noPlansMessage.style.display = 'none'; // Hide no plans message
+                    greetingDiv.innerHTML += `<br>Plan Start: ${planStart}<br>Plan End: ${planEnd}`;
+                    greetingDiv.style.color = 'green';
+                }
+
+                // Fetch transactions
+                const transactionsRef = userDocRef.collection('transactions');
+                transactionsRef.get().then((snapshot) => {
+                    if (snapshot.empty) {
+                        // Create transactions collection if absent
+                        transactionsRef.add({
+                            transactionType: "Initial",
+                            name: "Welcome Bonus",
+                            amount: 0
+                        });
+                    } else {
+                        snapshot.forEach((doc) => {
+                            const transaction = doc.data();
+                            const row = document.createElement('tr');
+                            row.innerHTML = `<td>${transaction.transactionType}</td><td>${transaction.name}</td><td>${transaction.amount}</td>`;
+                            transactionBody.appendChild(row);
+                        });
+                    }
+                });
+
+                preloader.style.display = 'none'; // Hide preloader
+            }
+        }).catch((error) => {
+            console.error('Error fetching user data:', error);
+        });
+    } else {
+        window.location.href = 'login.html'; // Redirect to login
+    }
+});
+
+// Function to get greeting based on time of day
+function getTimeOfDay() {
+    const hours = new Date().getHours();
+    if (hours < 12) return 'Morning';
+    if (hours < 18) return 'Afternoon';
+    return 'Evening';
+}
+        // Hamburger Menu
+        const hamburger = document.getElementById("hamburger");
+        const menu = document.getElementById("menu");
+        const closeMenu = document.getElementById("closeMenu");
+
+        hamburger.addEventListener("click", () => {
+            menu.classList.toggle("open");
+        });
+
+        closeMenu.addEventListener("click", () => {
+            menu.classList.remove("open");
+        });
+
+
+    </script>
+</body>
+</html>

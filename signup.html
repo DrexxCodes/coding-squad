@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup - Coding Squad</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="assets/parallax/jarallax.css">
+    <link rel="stylesheet" href="assets/animatecss/animate.css">
+    <link rel="stylesheet" href="assets/dropdown/css/style.css">
+    <link rel="stylesheet" href="assets/theme/css/style.css">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap">
+        </noscript>
+    <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css">
+    <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* Removal of default inheritance */
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        a:hover {
+            color: white;
+            transition: ease-in .2s;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #a3d1ff;
+            /* Header color */
+        }
+
+        header img {
+            max-width: 50px;
+            margin-right: 10px;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        img {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 2px solid #b3d9ff;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .input-field:focus {
+            border-color: #4da6ff;
+        }
+
+        .password-field {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-field i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .success {
+            color: green;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 12px 20px;
+            width: 100%;
+            background-color: #4da6ff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3385ff;
+        }
+
+        #preloader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 999;
+            text-align: center;
+        }
+
+        #preloader img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            height: 4px;
+            width: 30px;
+            background-color: #333;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        .menu {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            transform: translateX(100%);
+            /* Hide off-screen */
+        }
+
+        .menu.open {
+            transform: translateX(0);
+            /* Slide in */
+        }
+
+        .menu-item {
+            padding: 15px;
+            border-bottom: 1px solid #ccc;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #69a6cf;
+            /* Hover effect */
+        }
+
+        .close-menu {
+            cursor: pointer;
+            font-size: 20px;
+            color: #333;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+                /* Show on smaller screens */
+            }
+
+            .menu {
+                display: block;
+                /* Ensure it shows on smaller screens */
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: flex;
+                /* Hide hamburger on larger screens */
+            }
+
+            .menu {
+                display: block;
+                /* Hide the mobile menu on larger screens */
+            }
+        }
+
+
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            body {
+                background-color: #e6f2ff;
+            }
+
+            .container {
+                max-width: 450px;
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/66a51f59becc2fed692bf328/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();
+        </script>
+    <section data-bs-version="5.1" class="menu menu1 cid-uq7cLRpDKT" once="menu" id="menu01-0">
+
+
+        <nav class="navbar navbar-dropdown navbar-expand-lg">
+            <div class="container">
+                <div class="navbar-brand">
+                    <span class="navbar-logo">
+                        <a href="index.html">
+                            <img src="assets/images/image.png" alt="Coding Squad Logo" style="height: 3rem;">
+                        </a>
+                    </span>
+                    <span class="navbar-caption-wrap"><a class="navbar-caption text-black text-primary display-4"
+                            href="index.html">Coding Squad</a></span>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse"
+                    data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary display-4"
+                                href="dashboard.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary display-4" href="profile.html"
+                                aria-expanded="false">My Account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary display-4" href="activate.html">Activate Plans</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
+                                href="Coming-Soon.html">Pay4friend</a></li>
+
+                        <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
+                                href="Referrals.html">Referral Network</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </section>
+
+<br><br><br><br><br><br>
+    <div id="preloader"><img src="files/load.gif" alt="Loading..."></div>
+    <div class="container">
+        <img src="files/image.png" alt="Coding Squad Logo">
+        <div id="error-message" class="error"></div>
+        <input type="text" id="username" class="input-field" placeholder="Username">
+        <input type="email" id="email" class="input-field" placeholder="Email">
+        <div class="password-field">
+            <input type="password" id="password" class="input-field" placeholder="Password">
+            <i class='bx bx-show' id="togglePassword"></i>
+        </div>
+        <input type="text" id="userAgent" class="input-field" placeholder="User Agent" disabled>
+        <input type="text" id="referral" class="input-field" placeholder="Referral Code (optional)">
+        <button id="signupBtn">Sign Up</button>
+        <div id="success-message" class="success"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebaseConfig.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-core.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-script.js"></script>
+    <script src="assets/theme/js/script.js"></script>
+    <input name="cookieData" type="hidden" data-cookie-cookiesAlertType='1' data-cookie-customDialogSelector='null'
+        data-cookie-colorText='#424a4d' data-cookie-colorBg='rgb(255, 255, 255)' data-cookie-opacityOverlay='0'
+        data-cookie-bgOpacity='100' data-cookie-textButton='GOT IT' data-cookie-rejectText='REJECT'
+        data-cookie-colorButton='#80ace8' data-cookie-rejectColor='#ffffff' data-cookie-colorLink='#424a4d'
+        data-cookie-underlineLink='true'
+        data-cookie-text="We collect information like your device name, IP and cross browsing activities to provide support, research and analytics ">
+    <input name="animation" type="hidden">    <script>
+        const preloader = document.getElementById('preloader');
+        const signupBtn = document.getElementById('signupBtn');
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('password');
+        const errorMessage = document.getElementById('error-message');
+        const successMessage = document.getElementById('success-message');
+        const userAgentField = document.getElementById('userAgent');
+
+        // Display the user's browser and OS details
+        const userAgentString = navigator.userAgent;
+        userAgentField.value = userAgentString;
+
+        togglePassword.addEventListener('click', () => {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            togglePassword.classList.toggle('bx-show');
+            togglePassword.classList.toggle('bx-hide');
+        });
+
+        signupBtn.addEventListener('click', () => {
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const password = passwordField.value;
+            const referralCode = document.getElementById('referral').value;
+            preloader.style.display = 'block';
+            errorMessage.textContent = '';
+            successMessage.textContent = '';
+
+            if (referralCode) {
+                // Query the referrals collection for the matching referral code
+                db.collection('referrals')
+                    .where('referralCode', '==', referralCode)
+                    .get()
+                    .then((querySnapshot) => {
+                        if (!querySnapshot.empty) {
+                            // Referral code found, proceed with account creation
+                            createUserInAuth(email, password, username, referralCode);
+                        } else {
+                            preloader.style.display = 'none';
+                            errorMessage.textContent = 'Referral code invalid';
+                        }
+                    })
+                    .catch((error) => {
+                        preloader.style.display = 'none';
+                        errorMessage.textContent = `Error checking referral code: ${error.message}`;
+                    });
+            } else {
+                // No referral code provided, proceed with account creation
+                createUserInAuth(email, password, username);
+            }
+        });
+
+        function createUserInAuth(email, password, username, referralCode = null) {
+            auth.createUserWithEmailAndPassword(email, password)
+                .then((userCredential) => {
+                    const user = userCredential.user;
+                    addUserData(user, username, referralCode);
+                })
+                .catch((error) => {
+                    preloader.style.display = 'none';
+                    errorMessage.textContent = `Signup failed: ${error.message}`;
+                });
+        }
+
+        function addUserData(user, username, referralCode = null) {
+            const referral = referralCode ? db.collection('referrals').doc(referralCode) : null;
+            const referralCodeForUser = generateRandomAlphaNumericCode(9);
+            const transactionID = generateTransactionID(10);
+
+            const userData = {
+                username: username,
+                email: user.email,
+                userAgent: navigator.userAgent,
+                referralCode: referralCodeForUser,
+                wallet: 0,
+                activePlans: 'None',
+                planStart: 0,
+                planEnd: 0,
+                transactionID: transactionID,
+            };
+
+            db.collection('users').doc(user.uid).set(userData).then(() => {
+                if (referral) {
+                    // Add referred user details (username and registration date) under the referral code in Firestore
+                    referral.collection('referredUsers').doc(user.uid).set({
+                        username: username,
+                        registrationDate: new Date().toLocaleString(),
+                    });
+                }
+
+                db.collection('referrals').doc(user.uid).set({
+                    referralCode: referralCodeForUser,
+                });
+
+                user.sendEmailVerification().then(() => {
+                    preloader.style.display = 'none';
+                    successMessage.textContent = 'Signup successful! Please verify your email.';
+                });
+            }).catch((error) => {
+                preloader.style.display = 'none';
+                errorMessage.textContent = `Error saving user data: ${error.message}`;
+            });
+        }
+
+        function generateRandomAlphaNumericCode(length) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        function generateTransactionID(length) {
+            const chars = '0123456789';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+    </script>
+
+</body>
+
+</html>

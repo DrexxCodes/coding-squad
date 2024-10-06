@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer - Coding Squad</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="assets/parallax/jarallax.css">
+    <link rel="stylesheet" href="assets/animatecss/animate.css">
+    <link rel="stylesheet" href="assets/dropdown/css/style.css">
+    <link rel="stylesheet" href="assets/theme/css/style.css">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap">
+        </noscript>
+    <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css">
+    <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* Removal of default inheritance */
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        a:hover {
+            color: white;
+            transition: ease-in .2s;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #a3d1ff;
+            /* Header color */
+        }
+
+        header img {
+            max-width: 50px;
+            margin-right: 10px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #b3d9ff;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        input:focus {
+            border-color: #4da6ff;
+        }
+
+        /* General button style */
+        button {
+        padding: 12px 20px;
+        width: 100%;
+        background-color: #4da6ff;
+        color: white;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease; /* Smooth transition for hover effects */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adding subtle shadow */
+        }
+        
+        /* Hover effect */
+        button:hover {
+        background-color: #3385ff;
+        box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhance shadow on hover */
+        transform: translateY(-2px); /* Slightly raise the button */
+        }
+        
+        /* Active/Pressed effect */
+        button:active {
+        background-color: #2673cc;
+        box-shadow: none; /* Remove shadow */
+        transform: translateY(2px); /* Slightly depress the button */
+        }
+        
+        /* Disabled state */
+        button:disabled {
+        background-color: #c2d4e6;
+        cursor: not-allowed;
+        opacity: 0.6;
+        }
+        
+
+        #preloader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 999;
+            text-align: center;
+        }
+
+        #preloader img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            height: 4px;
+            width: 30px;
+            background-color: #333;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        .menu {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            transform: translateX(100%);
+            /* Hide off-screen */
+        }
+
+        .menu.open {
+            transform: translateX(0);
+            /* Slide in */
+        }
+
+        .menu-item {
+            padding: 15px;
+            border-bottom: 1px solid #ccc;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #69a6cf;
+            /* Hover effect */
+        }
+
+        .close-menu {
+            cursor: pointer;
+            font-size: 20px;
+            color: #333;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+                /* Show on smaller screens */
+            }
+
+            .menu {
+                display: block;
+                /* Ensure it shows on smaller screens */
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: flex;
+                /* Hide hamburger on larger screens */
+            }
+
+            .menu {
+                display: block;
+                /* Hide the mobile menu on larger screens */
+            }
+        }
+
+
+        /* Popup styles */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            position: relative;
+            width: 300px;
+            line-height: 1.5;
+        }
+
+        .popup-content h2 {
+            margin-bottom: 15px;
+        }
+
+        .blur {
+            backdrop-filter: blur(5px);
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                width: 95%;
+            }
+        }
+
+        /* Logo styling to match the sketch */
+        .logo-container {
+            position: relative;
+            top: -40px;
+            margin-bottom: -40px;
+        }
+
+        .logo-container img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 4px solid white;
+            background-color: #f0f8ff;
+        }
+    </style>
+</head>
+<body>
+    <section data-bs-version="5.1" class="menu menu1 cid-uq7cLRpDKT" once="menu" id="menu01-0">
+
+
+        <nav class="navbar navbar-dropdown navbar-expand-lg">
+            <div class="container">
+                <div class="navbar-brand">
+                    <span class="navbar-logo">
+                        <a href="index.html">
+                            <img src="assets/images/image.png" alt="Coding Squad Logo" style="height: 3rem;">
+                        </a>
+                    </span>
+                    <span class="navbar-caption-wrap"><a class="navbar-caption text-black text-primary display-4"
+                            href="index.html">Coding Squad</a></span>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse"
+                    data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary display-4"
+                                href="dashboard.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary display-4" href="profile.html"
+                                aria-expanded="false">My Account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary display-4" href="activate.html">Activate Plans</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
+                                href="Coming-Soon.html">Pay4friend</a></li>
+
+                        <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
+                                href="Referrals.html">Referral Network</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </section>
+
+<br><br><br><br><br><br>
+    <div id="preloader"><img src="files/load.gif" alt="Loading..."></div>
+
+
+    <div class="container">
+        <input type="text" id="transactionID" placeholder="Enter 10-digit Transaction ID" maxlength="10">
+        <input type="text" id="username" placeholder="Recipient Username" readonly>
+        <input type="number" id="amount" placeholder="Amount">
+        <button id="confirmBtn">Confirm</button>
+    </div>
+
+    <div id="popup">
+        <div class="popup-content">
+            <h2>Transaction Confirmation</h2>
+            <p id="transactionDetails"></p>
+            <p id="transactionPin"></p>
+            <button id="completeBtn">Complete</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="year"></span> Coding Squad. All rights reserved.</p>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="firebaseConfig.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-core.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-script.js"></script>
+    <script src="assets/theme/js/script.js"></script>
+    <input name="cookieData" type="hidden" data-cookie-cookiesAlertType='1' data-cookie-customDialogSelector='null'
+        data-cookie-colorText='#424a4d' data-cookie-colorBg='rgb(255, 255, 255)' data-cookie-opacityOverlay='0'
+        data-cookie-bgOpacity='100' data-cookie-textButton='GOT IT' data-cookie-rejectText='REJECT'
+        data-cookie-colorButton='#80ace8' data-cookie-rejectColor='#ffffff' data-cookie-colorLink='#424a4d'
+        data-cookie-underlineLink='true'
+        data-cookie-text="We collect information like your device name, IP and cross browsing activities to provide support, research and analytics ">
+    <input name="animation" type="hidden">    <script>
+        const preloader = document.getElementById('preloader');
+        const transactionIDField = document.getElementById('transactionID');
+        const usernameField = document.getElementById('username');
+        const amountField = document.getElementById('amount');
+        const confirmBtn = document.getElementById('confirmBtn');
+        const popup = document.getElementById('popup');
+        const transactionDetails = document.getElementById('transactionDetails');
+        const transactionPin = document.getElementById('transactionPin');
+        const completeBtn = document.getElementById('completeBtn');
+
+        // Ensure user is authenticated
+        firebase.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                window.location.href = "login.html";
+            }
+        });
+
+        transactionIDField.addEventListener('input', () => {
+            const transactionID = transactionIDField.value;
+            if (transactionID.length === 10) {
+                preloader.style.display = 'block';
+                // Check if the transaction ID exists in Firestore
+                firebase.firestore().collection('users').where('transactionID', '==', transactionID).get().then(snapshot => {
+                    if (!snapshot.empty) {
+                        usernameField.value = snapshot.docs[0].data().username;
+                    } else {
+                        alert("Account verification failed.");
+                        usernameField.value = ''; // Clear username if transaction ID is invalid
+                    }
+                    preloader.style.display = 'none';
+                }).catch(error => {
+                    console.error("Error fetching transaction ID: ", error);
+                    preloader.style.display = 'none';
+                });
+            } else {
+                usernameField.value = ''; // Clear username if transaction ID is not 10 digits
+            }
+        });
+
+        confirmBtn.addEventListener('click', () => {
+            if (usernameField.value && transactionIDField.value.length === 10) {
+                const senderName = firebase.auth().currentUser.displayName;
+                const recipientName = usernameField.value;
+                const amount = amountField.value;
+                const pin = generateRandomAlphaNumericCode(16);
+
+                // Show the popup with transaction details
+                transactionDetails.textContent = `Sender: ${senderName}\nReceiver: ${recipientName}\nAmount: ${amount}`;
+                transactionPin.textContent = `Pin: ${pin}`;
+                popup.style.display = 'flex';
+                document.body.classList.add('blur');
+            }
+        });
+
+        completeBtn.addEventListener('click', () => {
+            const transactionID = transactionIDField.value;
+            const senderName = firebase.auth().currentUser.displayName;
+            const recipientName = usernameField.value;
+            const amount = amountField.value;
+            const pin = transactionPin.textContent.split('Pin: ')[1];
+            const recipientID = transactionID;
+
+            // Create a new transaction in Firestore
+            const transactionData = {
+                SenderName: senderName,
+                ReceiverName: recipientName,
+                Amount: amount,
+                Pin: pin,
+                recipientID: recipientID,
+                Used: false
+            };
+
+            firebase.firestore().collection('TransactionPin').add(transactionData).then(() => {
+                alert('Transaction completed successfully!');
+                window.location.href = 'index.html'; // Redirect after completion
+            }).catch(error => {
+                console.error("Error creating transaction: ", error);
+            });
+        });
+
+        function generateRandomAlphaNumericCode(length) {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            return result;
+        }
+
+        // Set current year in the footer
+        document.getElementById("year").innerText = new Date().getFullYear();
+    </script>
+</body>
+</html>
+
+
+
+
+

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activate Subscription - Coding Squad</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="assets/parallax/jarallax.css">
+    <link rel="stylesheet" href="assets/animatecss/animate.css">
+    <link rel="stylesheet" href="assets/dropdown/css/style.css">
+    <link rel="stylesheet" href="assets/theme/css/style.css">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap">
+        </noscript>
+    <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css">
+    <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+    <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="assets/parallax/jarallax.css">
+    <link rel="stylesheet" href="assets/animatecss/animate.css">
+    <link rel="stylesheet" href="assets/dropdown/css/style.css">
+    <link rel="stylesheet" href="assets/theme/css/style.css">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap">
+        </noscript>
+    <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css">
+    <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* Removal of default inheritance */
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        a:hover {
+            color: white;
+            transition: ease-in .2s;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #a3d1ff;
+            /* Header color */
+        }
+
+        header img {
+            max-width: 50px;
+            margin-right: 10px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            padding: 20px;
+        }
+
+        .container1 {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="datetime-local"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4da6ff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3385ff;
+        }
+
+        #preloader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 999;
+            text-align: center;
+        }
+
+        #preloader img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .bar {
+            height: 4px;
+            width: 30px;
+            background-color: #333;
+            margin: 4px 0;
+            transition: 0.4s;
+        }
+
+        .menu {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 60%;
+            height: 100%;
+            background-color: white;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            padding: 20px;
+            transition: transform 0.3s ease;
+            transform: translateX(100%);
+            /* Hide off-screen */
+        }
+
+        .menu.open {
+            transform: translateX(0);
+            /* Slide in */
+        }
+
+        .menu-item {
+            padding: 15px;
+            border-bottom: 1px solid #ccc;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item:hover {
+            background-color: #69a6cf;
+            /* Hover effect */
+        }
+
+        .close-menu {
+            cursor: pointer;
+            font-size: 20px;
+            color: #333;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+                /* Show on smaller screens */
+            }
+
+            .menu {
+                display: block;
+                /* Ensure it shows on smaller screens */
+            }
+        }
+
+        @media (min-width: 769px) {
+            .hamburger {
+                display: flex;
+                /* Hide hamburger on larger screens */
+            }
+
+            .menu {
+                display: block;
+                /* Hide the mobile menu on larger screens */
+            }
+        }
+
+
+        #detailsContainer {
+            display: none;
+        }
+
+        #receiptImage {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body>
+    <section data-bs-version="5.1" class="menu menu1 cid-uq7cLRpDKT" once="menu" id="menu01-0">
+
+
+        <nav class="navbar navbar-dropdown navbar-expand-lg">
+            <div class="container">
+                <div class="navbar-brand">
+                    <span class="navbar-logo">
+                        <a href="index.html">
+                            <img src="assets/images/image.png" alt="Coding Squad Logo" style="height: 3rem;">
+                        </a>
+                    </span>
+                    <span class="navbar-caption-wrap"><a class="navbar-caption text-black text-primary display-4"
+                            href="index.html">Coding Squad</a></span>
+                </div>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse"
+                    data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary display-4"
+                                href="dashboard.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary display-4" href="profile.html"
+                                aria-expanded="false">My Account</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link link text-black text-primary display-4" href="activate.html">Activate Plans</a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
+                                href="Coming-Soon.html">Pay4friend</a></li>
+
+                        <li class="nav-item"><a class="nav-link link text-black text-primary display-4"
+                                href="Referrals.html">Referral Network</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </section>
+
+<br><br><br><br><br><br>
+
+
+    <div id="preloader">
+        <img src="files/load.gif" alt="Loading...">
+    </div>
+
+    <div class="container1">
+        <h2>Activate Subscription</h2>
+
+        <div class="form-group">
+            <label for="activationKey">Enter Activation Key</label>
+            <input type="text" id="activationKey" placeholder="Enter activation key" required>
+        </div>
+
+        <button id="getDetails">Get Details</button>
+
+        <div id="detailsContainer">
+            <div class="form-group">
+                <label for="email">User Email</label>
+                <input type="email" id="email" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="duration">Subscription Duration</label>
+                <input type="text" id="duration" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="paymentDateTime">Payment Date and Time</label>
+                <input type="datetime-local" id="paymentDateTime" readonly>
+            </div>
+
+            <img id="receiptImage" alt="Receipt Image">
+
+            <button id="activateKey">Activate</button>
+        </div>
+    </div>
+<br><br><br><br><br><br>
+    <section data-bs-version="5.1" class="footer4 cid-uqraNJS7T2" once="footers" id="footer04-25">
+
+
+
+
+
+		<div class="container">
+			<div class="media-container-row align-center mbr-white">
+				<div class="col-12">
+					<p class="mbr-text mb-0 mbr-fonts-style display-7">
+						© Copyright 2024 Coding Squad - All Rights Reserved
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+<script src="firebaseConfig.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-core.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-script.js"></script>
+    <script src="assets/theme/js/script.js"></script>
+    <input name="cookieData" type="hidden" data-cookie-cookiesAlertType='1' data-cookie-customDialogSelector='null'
+        data-cookie-colorText='#424a4d' data-cookie-colorBg='rgb(255, 255, 255)' data-cookie-opacityOverlay='0'
+        data-cookie-bgOpacity='100' data-cookie-textButton='GOT IT' data-cookie-rejectText='REJECT'
+        data-cookie-colorButton='#80ace8' data-cookie-rejectColor='#ffffff' data-cookie-colorLink='#424a4d'
+        data-cookie-underlineLink='true'
+        data-cookie-text="We collect information like your device name, IP and cross browsing activities to provide support, research and analytics ">
+    <input name="animation" type="hidden">    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-core.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-script.js"></script>
+    <script src="assets/theme/js/script.js"></script>
+    <input name="cookieData" type="hidden" data-cookie-cookiesAlertType='1' data-cookie-customDialogSelector='null'
+        data-cookie-colorText='#424a4d' data-cookie-colorBg='rgb(255, 255, 255)' data-cookie-opacityOverlay='0'
+        data-cookie-bgOpacity='100' data-cookie-textButton='GOT IT' data-cookie-rejectText='REJECT'
+        data-cookie-colorButton='#80ace8' data-cookie-rejectColor='#ffffff' data-cookie-colorLink='#424a4d'
+        data-cookie-underlineLink='true'
+        data-cookie-text="We collect information like your device name, IP and cross browsing activities to provide support, research and analytics ">
+    <input name="animation" type="hidden">
+    <script>
+        const preloader = document.getElementById('preloader');
+        const getDetailsButton = document.getElementById('getDetails');
+        const activateKeyButton = document.getElementById('activateKey');
+        const detailsContainer = document.getElementById('detailsContainer');
+        const activationKeyInput = document.getElementById('activationKey');
+
+        // Firebase auth check
+        firebase.auth().onAuthStateChanged((user) => {
+            if (!user) {
+                // Redirect to login if not logged in
+                window.location.href = 'login.html';
+            }
+        });
+
+        // Function to fetch and display details from Firestore
+        getDetailsButton.addEventListener('click', () => {
+            const activationKey = activationKeyInput.value;
+
+            if (activationKey) {
+                preloader.style.display = 'block';
+
+                // Fetch the key details from Firestore
+                const db = firebase.firestore();
+                db.collection('Keys').doc(activationKey).get().then(doc => {
+                    if (doc.exists) {
+                        const keyData = doc.data();
+
+                        // Populate the fields with the data
+                        document.getElementById('email').value = keyData.email;
+                        document.getElementById('duration').value = keyData.duration;
+                        document.getElementById('paymentDateTime').value = keyData.paymentDateTime;
+
+                        // Display receipt image
+                        const receiptImage = document.getElementById('receiptImage');
+                        receiptImage.src = keyData.receiptURL;
+
+                        // Hide activation key input and button
+                        activationKeyInput.style.display = 'none';
+                        getDetailsButton.style.display = 'none';
+
+                        // Show the details container
+                        detailsContainer.style.display = 'block';
+                    } else {
+                        alert('Invalid Activation Key');
+                    }
+                    preloader.style.display = 'none';
+                }).catch(error => {
+                    console.error('Error fetching key:', error);
+                    preloader.style.display = 'none';
+                });
+            }
+        });
+
+        // Function to activate the key and update user plan
+        activateKeyButton.addEventListener('click', () => {
+            const user = firebase.auth().currentUser;
+            const activationKey = activationKeyInput.value;
+            const duration = document.getElementById('duration').value;
+            const paymentDateTime = document.getElementById('paymentDateTime').value;
+
+            if (user && activationKey && duration && paymentDateTime) {
+                preloader.style.display = 'block';
+
+                const db = firebase.firestore();
+                const userId = user.uid;
+
+                // Calculate the plan end date based on the duration
+                const startDate = new Date(paymentDateTime);
+                let endDate;
+
+                switch (duration) {
+                    case '2 months':
+                        endDate = new Date(startDate.setMonth(startDate.getMonth() + 2));
+                        break;
+                    case '4 months':
+                        endDate = new Date(startDate.setMonth(startDate.getMonth() + 4));
+                        break;
+                    case '6 months':
+                        endDate = new Date(startDate.setMonth(startDate.getMonth() + 6));
+                        break;
+                    case '1 year':
+                        endDate = new Date(startDate.setFullYear(startDate.getFullYear() + 1));
+                        break;
+                }
+
+                // Determine the plan type
+                let planType;
+                if (duration === '2 months') planType = 'Bi-monthly Plan';
+                if (duration === '4 months') planType = 'Quarterly Plan';
+                if (duration === '6 months') planType = 'Half Year Plan';
+                if (duration === '1 year') planType = 'Full Year Plan';
+
+                // Update the user's plan information
+                db.collection('users').doc(userId).update({
+                    activePlans: planType,
+                    planStart: paymentDateTime,
+                    planEnd: endDate.toISOString()
+                }).then(() => {
+                    alert('Subscription Activated Successfully!');
+                    window.location.href = 'index.html';
+                }).catch(error => {
+                    console.error('Error updating user plan:', error);
+                    preloader.style.display = 'none';
+                });
+            }
+        });
+
+        // Preloader hide logic on window load
+        window.addEventListener('load', () => {
+            preloader.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

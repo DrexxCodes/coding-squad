@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Referral Key - Coding Squad</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="assets/web/assets/mobirise-icons2/mobirise2.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-grid.min.css">
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-reboot.min.css">
+    <link rel="stylesheet" href="assets/parallax/jarallax.css">
+    <link rel="stylesheet" href="assets/animatecss/animate.css">
+    <link rel="stylesheet" href="assets/dropdown/css/style.css">
+    <link rel="stylesheet" href="assets/theme/css/style.css">
+    <link rel="preload"
+        href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Inter+Tight:100,200,300,400,500,600,700,800,900,100i,200i,300i,400i,500i,600i,700i,800i,900i&display=swap">
+        </noscript>
+    <link rel="preload" as="style" href="assets/mobirise/css/mbr-additional.css">
+    <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        /* Removal of default inheritance */
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        a:hover {
+            color: white;
+            transition: ease-in .2s;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #a3d1ff;
+            /* Header color */
+        }
+
+        header img {
+            max-width: 50px;
+            margin-right: 10px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        
+        h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        }
+        
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #b3d9ff;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        input:focus, select:focus {
+            border-color: #4da6ff;
+        }
+
+        button {
+            padding: 12px 20px;
+            width: 100%;
+            background-color: #4da6ff;
+            color: white;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3385ff;
+        }
+        
+        .activation-key-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        }
+        
+        .activation-key-container input {
+        margin-right: 5px;
+        width: 100%;
+        }
+        
+
+        .generate-btn {
+            padding: 12px 20px;
+            background-color: #4da6ff;
+            color: white;
+            font-size: 14px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 50%;
+        }
+
+        .generate-btn:active {
+            background-color: #e65c00;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Generate Referral Key</h2>
+
+        <!-- Image Upload -->
+        <label for="receipt">Upload Payment Receipt:</label>
+        <input type="file" id="receipt" accept="image/*">
+
+        <!-- User Email -->
+        <label for="email">User Email:</label>
+        <input type="email" id="email" placeholder="Enter User's Email">
+
+        <!-- Date & Time of Payment -->
+        <label for="paymentDate">Payment Date & Time:</label>
+        <input type="datetime-local" id="paymentDate">
+
+        <!-- Subscription Duration -->
+        <label for="duration">Subscription Duration:</label>
+        <select id="duration">
+            <option value="2-months">2 Months</option>
+            <option value="4-months">4 Months</option>
+            <option value="6-months">6 Months</option>
+            <option value="1-year">1 Year</option>
+        </select>
+
+        <!-- Activation Key -->
+<div class="form-group activation-key-container">
+                <input type="text" id="activationKey" placeholder="Activation Key" readonly>
+                <button type="button" id="generateKeyBtn" class="generate-btn">🔄</button>
+            </div>
+
+        <!-- Submit Button -->
+        <button id="submitBtn">Submit</button>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-storage.js"></script>
+<script src="firebaseConfig.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-core.js"></script>
+    <script src="assets/web/assets/cookies-alert-plugin/cookies-alert-script.js"></script>
+    <script src="assets/theme/js/script.js"></script>
+    <input name="cookieData" type="hidden" data-cookie-cookiesAlertType='1' data-cookie-customDialogSelector='null'
+        data-cookie-colorText='#424a4d' data-cookie-colorBg='rgb(255, 255, 255)' data-cookie-opacityOverlay='0'
+        data-cookie-bgOpacity='100' data-cookie-textButton='GOT IT' data-cookie-rejectText='REJECT'
+        data-cookie-colorButton='#80ace8' data-cookie-rejectColor='#ffffff' data-cookie-colorLink='#424a4d'
+        data-cookie-underlineLink='true'
+        data-cookie-text="We collect information like your device name, IP and cross browsing activities to provide support, research and analytics ">
+    <input name="animation" type="hidden">    <script>
+    const receiptInput = document.getElementById('receipt');
+    const emailInput = document.getElementById('email');
+    const paymentDateInput = document.getElementById('paymentDate');
+    const durationSelect = document.getElementById('duration');
+    const activationKeyInput = document.getElementById('activationKey');
+    const generateKeyBtn = document.getElementById('generateKeyBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    // Generate Activation Key
+    generateKeyBtn.addEventListener('click', () => {
+    const key = generateActivationKey();
+    activationKeyInput.value = key;
+    });
+    
+    function generateActivationKey() {
+    const prefix = 'CS|24|';
+    const numbers = Math.floor(10000000 + Math.random() * 90000000).toString();
+    const letters = String.fromCharCode(65 + Math.floor(Math.random() * 26)) + 
+    String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    return prefix + numbers + letters;
+    }
+    
+    // Upload data to Firestore
+    submitBtn.addEventListener('click', async () => {
+    const email = emailInput.value;
+    const paymentDate = paymentDateInput.value;
+    const duration = durationSelect.value;
+    const activationKey = activationKeyInput.value;
+    const receiptFile = receiptInput.files[0];
+    
+    if (!receiptFile || !email || !paymentDate || !activationKey) {
+    alert("Please fill in all fields and upload a receipt.");
+    return;
+    }
+    
+    try {
+    // Upload receipt to Firebase Storage
+    const storageRef = firebase.storage().ref('receipts/' + receiptFile.name);
+    const snapshot = await storageRef.put(receiptFile);
+    const downloadURL = await snapshot.ref.getDownloadURL();
+    
+    // Add key information to Firestore with the key as the document ID
+    const keyData = {
+    email: email,
+    paymentDate: paymentDate,
+    duration: duration,
+    activationKey: activationKey,
+    receiptURL: downloadURL,
+    validated: false
+    };
+    
+    // Use the activationKey as the document ID
+    await firebase.firestore().collection('Keys').doc(activationKey).set(keyData);
+    alert('Key and data successfully submitted!');
+    // Optionally reset the form
+    resetForm();
+    } catch (error) {
+    console.error("Error uploading data: ", error);
+    alert("Error uploading data. Please try again.");
+    }
+    });
+    
+    function resetForm() {
+    emailInput.value = '';
+    paymentDateInput.value = '';
+    durationSelect.value = '2-months';
+    activationKeyInput.value = '';
+    receiptInput.value = '';
+    }
+    </script>
+</body>
+</html>
