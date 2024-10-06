@@ -16,11 +16,11 @@
         }
         /* Removal of default inheritance */
         a {
-            text-decoration: none;
-            color: black;
+            text-decoration: rgb(146, 146, 172);
+            /* color: black; */
         }
         a:hover {
-            color: white;
+            color: rgba(70, 123, 201, 0.466);
             transition: ease-in .2s;
         }
         
@@ -258,19 +258,22 @@
     </script>
 
 
+
     <div id="preloader"><img src="files/load.gif" alt="Loading..."></div>
 
 
     <div class="container">
         <img src="files/image.png" alt="Coding Squad Logo">
+        <div id="success-message" class="success"></div>
         <div id="error-message" class="error"></div>
         <input type="email" id="email" class="input-field" placeholder="Email">
         <div class="password-field">
             <input type="password" id="password" class="input-field" placeholder="Password">
             <i class='bx bx-show' id="togglePassword"></i>
         </div>
+        
+        <p style="font-size: 13px; float: right;">Don't have an account? Create <a href="signup.html">here</a></p>
         <button id="loginBtn">Login</button>
-        <div id="success-message" class="success"></div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
