@@ -410,7 +410,7 @@
                     case '6-months':
                         endDate = new Date(startDate.setMonth(startDate.getMonth() + 6));
                         break;
-                    case '1 year':
+                    case '1-year':
                         endDate = new Date(startDate.setFullYear(startDate.getFullYear() + 1));
                         break;
                     default:
@@ -432,7 +432,7 @@
                 if (duration === '2-months') planType = 'Bi-monthly Plan';
                 if (duration === '4-months') planType = 'Quarterly Plan';
                 if (duration === '6-months') planType = 'Half Year Plan';
-                if (duration === '1 year') planType = 'Full Year Plan';
+                if (duration === '1-year') planType = 'Full Year Plan';
 
                 // Update the user's plan information and validate the key
                 db.collection('users').doc(userId).update({
